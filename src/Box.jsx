@@ -1,6 +1,7 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useMemo } from "react"
 import { useEffect } from "react"
 import { useFrame } from "@react-three/fiber"
+import * as THREE from 'three'
 
 
 
@@ -10,8 +11,10 @@ export default function Box(props) {
     const [hovered, setHover] = useState(false)
     const [rotate, setRotate] = useState(false)
 
+    const geometry = useMemo(() => new THREE.BoxGeometry(), [])
+
     useEffect(() => {
-        console.log(ref.current)
+        console.log(ref.current.geometry.uuid)
     })
 
     useFrame((_, delta) => {
@@ -29,8 +32,9 @@ export default function Box(props) {
                 onPointerDown={() => setRotate(!rotate)}
                 onPointerOver={() => setHover(true)}
                 onPointerOut={() => setHover(false)}
+                geometry={geometry}
             >
-                <boxGeometry />
+
                 <meshBasicMaterial color={hovered ? 0xff0000 : 0x00ff00} wireframe />
             </mesh>
         </>
