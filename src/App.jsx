@@ -3,8 +3,15 @@ import { Canvas } from '@react-three/fiber'
 import Box from './Box'
 import * as THREE from 'three'
 import { OrbitControls, Stats } from '@react-three/drei'
+import { useRef } from 'react'
+import { color } from 'three/examples/jsm/nodes/Nodes.js'
 
 function App() {
+  const ref = useRef()
+  //ref.material.color = "orange"
+  ref.material = new THREE.MeshPhongMaterial()
+  ref.material.color = "orange"
+
 
   return (
     <>
@@ -19,11 +26,14 @@ function App() {
           position={[0.75, 0, 0]}
           name="B"
           material={new THREE.MeshNormalMaterial()}
+
         />
         <Box
           position={[0.3, 0, 0]}
           name="C"
-          material={new THREE.MeshPhongMaterial()}
+
+          ref={ref}
+
         />
         <Box
           position={[-0.3, 0, 0]}
