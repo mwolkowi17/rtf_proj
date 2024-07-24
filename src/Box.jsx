@@ -28,14 +28,13 @@ export default function Box(props) {
         <>
             <mesh{...props}
                 ref={ref}
-                scale={hovered ? [1.1, 1.1, 1.1] : [1, 1, 1]}
+                scale={hovered ? [.1, .1, .1] : [.31, .31, .31]}
                 onPointerDown={() => setRotate(!rotate)}
-                onPointerOver={() => setHover(true)}
-                onPointerOut={() => setHover(false)}
+
                 geometry={geometry}
             >
 
-                <meshBasicMaterial color={hovered ? 0xff0000 : 0x00ff00} wireframe />
+
             </mesh>
         </>
     )
